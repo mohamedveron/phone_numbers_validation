@@ -6,7 +6,7 @@ import (
 )
 
 func (s *Server) GetPhoneNumbers(w http.ResponseWriter, r *http.Request) {
-	employees, err := s.svc.GetPhoneNumbers()
+	phones, err := s.svc.GetPhoneNumbers()
 
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -14,5 +14,5 @@ func (s *Server) GetPhoneNumbers(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(employees)
+	json.NewEncoder(w).Encode(phones)
 }
