@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"github.com/go-chi/chi"
 	_ "github.com/mattn/go-sqlite3"
@@ -9,28 +8,38 @@ import (
 	"github.com/mohamedveron/phone_numbers_validation/persistence"
 	"github.com/mohamedveron/phone_numbers_validation/service"
 	"net/http"
-	"strconv"
 )
 
 
 func main() {
 
-	database, err := sql.Open("sqlite3", "./sample.db")
-	if err != nil {
-		fmt.Print(err)
+	countriesCodeMap := make(map[string]service.Country)
+
+	countriesCodeMap["Cameroon"] = service.Country{"+237", "\\(237\\)\\ ?[2368]\\d{7,8}$"}
+
+	countriesCodeMap["Ethiopia"] = service.Country{
+		"+251",
+		"\\(251\\)\\ ?[1-59]\\d{8}$",
 	}
 
-	rows, _ := database.Query("SELECT id, name, phone FROM customer")
-	var id int
-	var name string
-	var phone string
-	for rows.Next() {
-		rows.Scan(&id, &name, &phone)
-		fmt.Println(strconv.Itoa(id) + ": " + name + " " + phone)
+	countriesCodeMap["Morocco"] = service.Country{
+		"+212",
+		"\\(212\\)\\ ?[5-9]\\d{8}$",
 	}
 
+	countriesCodeMap["Mozambique"] = service.Country{
+		"+258",
+		"\\(258\\)\\ ?[28]\\d{7,8}$",
+	}
+
+	countriesCodeMap["Uganda"] = service.Country{
+		"+256",
+		"\\(256\\)\\ ?\\d{9}$",
+	}
+
+	//initialize the service layers
 	persistenceLayer := persistence.NewPersistence("./sample.db")
-	serviceLayer := service.NewService(persistenceLayer)
+	serviceLayer := service.NewService(persistenceLayer, countriesCodeMap)
 	server := api.NewServer(serviceLayer)
 
 	// prepare router
