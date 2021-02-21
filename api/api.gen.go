@@ -11,8 +11,8 @@ import (
 
 // PhoneNumber defines model for PhoneNumber.
 type PhoneNumber struct {
-	CustomerName string `json:"customerName"`
-	Number       string `json:"number"`
+	CustomerName *string `json:"customerName,omitempty"`
+	Number       *string `json:"number,omitempty"`
 }
 
 // GetPhoneNumbersJSONBody defines parameters for GetPhoneNumbers.

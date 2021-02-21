@@ -4,8 +4,8 @@ import "github.com/mohamedveron/phone_numbers_validation/domains"
 
 func (s *Service) GetPhoneNumbers() ([]domains.PhoneNumber, error){
 
-	employeesList := []domains.PhoneNumber{}
+	phonesList, _ := s.persistence.GetPhoneNumbers()
 
 
-	return employeesList, nil
+	return phonesList, nil
 }

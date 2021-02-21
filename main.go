@@ -6,6 +6,7 @@ import (
 	"github.com/go-chi/chi"
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/mohamedveron/phone_numbers_validation/api"
+	"github.com/mohamedveron/phone_numbers_validation/persistence"
 	"github.com/mohamedveron/phone_numbers_validation/service"
 	"net/http"
 	"strconv"
@@ -28,7 +29,8 @@ func main() {
 		fmt.Println(strconv.Itoa(id) + ": " + name + " " + phone)
 	}
 
-	serviceLayer := service.NewService()
+	persistenceLayer := persistence.NewPersistence("./sample.db")
+	serviceLayer := service.NewService(persistenceLayer)
 	server := api.NewServer(serviceLayer)
 
 	// prepare router

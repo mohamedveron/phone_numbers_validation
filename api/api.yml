@@ -7,9 +7,6 @@ components:
 
     PhoneNumber:
       type: object
-      required:
-        - customerName
-        - number
       properties:
         customerName:
           type: string
