@@ -3,6 +3,7 @@ package service
 import (
 	"github.com/mohamedveron/phone_numbers_validation/domains"
 	"regexp"
+	"strings"
 )
 
 func (s *Service) GetPhoneNumbers() (map[string]*domains.ResponseList, error) {
@@ -13,6 +14,7 @@ func (s *Service) GetPhoneNumbers() (map[string]*domains.ResponseList, error) {
 	for idx := range phonesList {
 		for k := range s.countriesCodeMap {
 
+			// check if current number match this country regex
 			match, _ := regexp.MatchString(s.countriesCodeMap[k].Regex, phonesList[idx].Number);
 			flag := false
 
@@ -43,7 +45,7 @@ func (s *Service) GetPhoneNumbers() (map[string]*domains.ResponseList, error) {
 					Number:       phonesList[idx].Number,
 				})
 
-			}else{
+			}else if(!flag && strings.Contains(phonesList[idx].Number, listMap[k].Code[1:])){
 
 				listMap[k].NotValidNumbers = append(listMap[k].NotValidNumbers, domains.PhoneNumber{
 					CustomerName: phonesList[idx].CustomerName,
