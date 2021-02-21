@@ -10,7 +10,6 @@ import (
 	"net/http"
 )
 
-
 func main() {
 
 	countriesCodeMap := make(map[string]service.Country)

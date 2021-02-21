@@ -4,7 +4,7 @@ import (
 	"github.com/mohamedveron/phone_numbers_validation/domains"
 )
 
-func (db *Persistence) GetPhoneNumbers() ([]domains.PhoneNumber, error){
+func (db *Persistence) GetPhoneNumbers() ([]domains.PhoneNumber, error) {
 	phonesList := []domains.PhoneNumber{}
 
 	rows, err := db.database.Query("SELECT name, phone FROM customer")

@@ -5,8 +5,8 @@ import (
 	"net/http"
 )
 
-func (s *Server) GetPhoneNumbers(w http.ResponseWriter, r *http.Request){
-	employees , err := s.svc.GetPhoneNumbers()
+func (s *Server) GetPhoneNumbers(w http.ResponseWriter, r *http.Request) {
+	employees, err := s.svc.GetPhoneNumbers()
 
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

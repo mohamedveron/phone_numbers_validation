@@ -6,13 +6,12 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-
 type Persistence struct {
 	sourcePath string
-	database *sql.DB
+	database   *sql.DB
 }
 
-func NewPersistence(sourcePath string) *Persistence{
+func NewPersistence(sourcePath string) *Persistence {
 	database, err := sql.Open("sqlite3", sourcePath)
 
 	if err != nil {
@@ -21,9 +20,6 @@ func NewPersistence(sourcePath string) *Persistence{
 
 	return &Persistence{
 		sourcePath: sourcePath,
-		database: database,
+		database:   database,
 	}
 }
-
-
-

@@ -1,6 +1,6 @@
 package service
 
 type Country struct {
-	Code string
+	Code  string
 	Regex string
 }
