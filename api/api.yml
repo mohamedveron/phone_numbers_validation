@@ -1,0 +1,43 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Phone Numbers Validation by Mohamed Abdel Mohaimen -> mohamedveron23@gmail.com
+components:
+  schemas:
+
+    PhoneNumber:
+      type: object
+      required:
+        - customerName
+        - number
+      properties:
+        customerName:
+          type: string
+        number:
+          type: string
+
+
+paths:
+  /phoneNumbers:
+    post:
+      summary: Get all Phone Numbers with filters
+      operationId: getPhoneNumbers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PhoneNumber'
+      responses:
+        '200':
+          description: Project is created
+          content:
+            application/json:
+              schema:
+                type: any
+        '400':
+          description: Bad request
+        '409':
+          description: Conflict in insertion
+        '500':
+          description: Internal server error
