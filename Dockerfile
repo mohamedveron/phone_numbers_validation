@@ -21,4 +21,4 @@ RUN go build -o ./out/phone_numbers_validation .
 EXPOSE 8080
 
 # Run the executable
-CMD ["phone_numbers_validation"]
+CMD ["./phone_numbers_validation"]
