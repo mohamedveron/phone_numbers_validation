@@ -31,7 +31,7 @@ make test
 ```
 If you have issue with code generation in generate step you can run go test -v ./tests
 
-# Start the http server:
+# Start the http server on port 8080:
 
 ```bash
 make run
