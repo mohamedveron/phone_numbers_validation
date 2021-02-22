@@ -49,6 +49,13 @@ components:
         limit:
           type: integer
 
+    Filters:
+      properties:
+        country:
+          type: string
+        state:
+          type: string
+
 
 
 paths:
@@ -60,7 +67,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PhoneNumber'
+              $ref: '#/components/schemas/Filters'
       responses:
         '200':
           description: numbers list returned

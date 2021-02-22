@@ -9,6 +9,12 @@ import (
 	"github.com/go-chi/chi"
 )
 
+// Filters defines model for Filters.
+type Filters struct {
+	Country *string `json:"country,omitempty"`
+	State   *string `json:"state,omitempty"`
+}
+
 // PhoneNumber defines model for PhoneNumber.
 type PhoneNumber struct {
 	CustomerName *string `json:"customerName,omitempty"`
@@ -32,7 +38,7 @@ type QueryResponse struct {
 }
 
 // GetPhoneNumbersJSONBody defines parameters for GetPhoneNumbers.
-type GetPhoneNumbersJSONBody PhoneNumber
+type GetPhoneNumbersJSONBody Filters
 
 // GetPhoneNumbersJSONRequestBody defines body for GetPhoneNumbers for application/json ContentType.
 type GetPhoneNumbersJSONRequestBody GetPhoneNumbersJSONBody
