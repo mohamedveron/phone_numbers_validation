@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func (s *Service) GetPhoneNumbers() (map[string]*domains.ResponseList, error) {
+func (s *Service) GetPhoneNumbers() (CategoryListResponse, error) {
 
 	phonesList, _ := s.persistence.GetPhoneNumbers()
 	listMap := make(map[string]*domains.ResponseList)
@@ -55,5 +55,5 @@ func (s *Service) GetPhoneNumbers() (map[string]*domains.ResponseList, error) {
 		}
 	}
 
-	return listMap, nil
+	return CategoryListResponse{len(phonesList), listMap}, nil
 }

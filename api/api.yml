@@ -13,6 +13,43 @@ components:
         number:
           type: string
 
+    PhoneNumbersResponseData:
+      required:
+        - validNumbers
+        - notValidNumbers
+        - code
+        - country
+      properties:
+        validNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+        notValidNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+        code:
+          type: string
+        country:
+          type: string
+
+
+    QueryResponse:
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumbersResponseData'
+        count:
+          type: number
+        page:
+          type: integer
+        limit:
+          type: integer
+
+
 
 paths:
   /phoneNumbers:
@@ -20,21 +57,18 @@ paths:
       summary: Get all Phone Numbers with filters
       operationId: getPhoneNumbers
       requestBody:
-        required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PhoneNumber'
       responses:
         '200':
-          description: Project is created
+          description: numbers list returned
           content:
             application/json:
               schema:
-                type: any
+                $ref: '#/components/schemas/QueryResponse'
         '400':
           description: Bad request
-        '409':
-          description: Conflict in insertion
         '500':
           description: Internal server error

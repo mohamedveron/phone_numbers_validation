@@ -15,6 +15,22 @@ type PhoneNumber struct {
 	Number       *string `json:"number,omitempty"`
 }
 
+// PhoneNumbersResponseData defines model for PhoneNumbersResponseData.
+type PhoneNumbersResponseData struct {
+	Code            string        `json:"code"`
+	Country         string        `json:"country"`
+	NotValidNumbers []PhoneNumber `json:"notValidNumbers"`
+	ValidNumbers    []PhoneNumber `json:"validNumbers"`
+}
+
+// QueryResponse defines model for QueryResponse.
+type QueryResponse struct {
+	Count *float32                   `json:"count,omitempty"`
+	Data  []PhoneNumbersResponseData `json:"data"`
+	Limit *int                       `json:"limit,omitempty"`
+	Page  *int                       `json:"page,omitempty"`
+}
+
 // GetPhoneNumbersJSONBody defines parameters for GetPhoneNumbers.
 type GetPhoneNumbersJSONBody PhoneNumber
 
